@@ -3,6 +3,9 @@ import os
 from eth_account import Account
 from mnemonic import Mnemonic
 
+# Enable unaudited HD wallet features
+Account.enable_unaudited_hdwallet_features()
+
 def generate_wallets(num_wallets):
     wallets = []
     mnemo = Mnemonic("english")
