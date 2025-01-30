@@ -1,5 +1,4 @@
 import json
-import os
 from eth_account import Account
 from mnemonic import Mnemonic
 
@@ -13,15 +12,14 @@ def generate_wallets(num_wallets):
     for _ in range(num_wallets):
         # Generate a random mnemonic phrase
         mnemonic_phrase = mnemo.generate(strength=256)
-        seed = mnemo.to_seed(mnemonic_phrase)
         
-        # Generate an Ethereum account from the seed
+        # Generate an Ethereum account from the mnemonic phrase
         account = Account.from_mnemonic(mnemonic_phrase)
 
         # Store wallet information
         wallet_info = {
             "mnemonic": mnemonic_phrase,
-            "private_key": account.privateKey.hex(),
+            "private_key": account._private_key.hex(),  # Updated line
             "public_key": account.address
         }
         
